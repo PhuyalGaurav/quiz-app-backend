@@ -47,7 +47,7 @@ def process_image_with_openai(image_path):
         
         # Call the OpenAI API
         response = client.chat.completions.create(
-            model="gpt-4-vision-preview",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "user", 

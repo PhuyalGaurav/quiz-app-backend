@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from rest_framework import viewsets, status, generics, permissions, filters
+from rest_framework import viewsets, status, generics, permissions, filters, parsers
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
@@ -327,6 +327,11 @@ class ChoiceViewSet(viewsets.ModelViewSet):
 class ImageUploadView(generics.CreateAPIView):
     serializer_class = ImageUploadSerializer
     permission_classes = [IsAuthenticated]
+    parser_classes = [
+        parsers.FormParser,
+        parsers.MultiPartParser,
+        parsers.JSONParser,
+    ]
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

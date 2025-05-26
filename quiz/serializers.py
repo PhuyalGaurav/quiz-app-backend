@@ -71,6 +71,11 @@ class QuizDetailSerializer(QuizSerializer):
 
 
 class ImageUploadSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(
+        allow_empty_file=False,
+        use_url=True,
+    )
+    
     class Meta:
         model = ImageUpload
         fields = ['id', 'image', 'uploaded_at', 'processed', 'parsed_data']
